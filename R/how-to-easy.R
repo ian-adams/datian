@@ -1,3 +1,6 @@
+# To load package
+# remotes::install_github("ian-adams/datian")
+
 # Basic walk through
 # from https://rstudio4edu.github.io/rstudio4edu-book/data-pkg.html
 
@@ -22,3 +25,20 @@
 
 # 8. open up and edit the DESCRIPTION file to fill in the author (your) info 
 #    and other descriptive info about the package.
+
+
+# TLDR
+# Here’s how you put custom data in a package:
+#   
+#   In a GitHub-connected RStudio project, run create_package(getwd())
+# usethis::use_data_raw() makes data-raw/. In here, put your .csv and a manually-created dataset_load.R script.
+# In dataset_load.R, read in the .csv and do data-clean up.
+# Also in dataset_load.R, run usethis::use_data(<your-dataset>, overwrite = TRUE) to export an .rda to data/.
+# Run usethis::use_r("<your-dataset>"). Manually insert Roxygen comments.
+# Edit DESCRIPTION. Include a LICENSE file.
+# Run usethis::use_package_doc() to document the whole package.
+# Keep the package-level .R script open and run usethis::use_tibble() for data as tibbles.
+# Run devtools::document() to make all documentation concrete.
+# Check your package with devtools::check(document=FALSE).
+# Go to Build > Install and Restart !
+#   Push to GitHub and have folks install with remotes::install_github("<your-repo>/<your package>").
